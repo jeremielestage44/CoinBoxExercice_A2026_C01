@@ -6,6 +6,7 @@ class Test_CCoinBox(unittest.TestCase):
     def test_pass(self):
         pass
 
+
     def test_monnaie(self):
         coinBox = CCoinBox()
         coinBox.ajouter_25c()
@@ -18,6 +19,14 @@ class Test_CCoinBox(unittest.TestCase):
         piece = coinBox.retourne_monnaie()
         self.assertEqual(coinBox.get_vente_permise(), False)
         self.assertEqual(piece, 1)
+
+    def test_vente_ajoute_deux_a_la_monnaie_totale(self):
+        coinBox = CCoinBox()
+        coinBox.ajouter_25c()
+        coinBox.ajouter_25c()
+        coinBox.vente()
+        self.assertEqual(coinBox.get_monnaie_totale(), 2)
+        self.assertEqual(coinBox.get_monnaie_courante(), 0)
 
     def test_permet_une_double_vente(self):
         coinBox = CCoinBox()
